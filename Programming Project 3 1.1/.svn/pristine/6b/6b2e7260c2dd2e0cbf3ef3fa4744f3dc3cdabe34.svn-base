@@ -1,0 +1,24 @@
+package cus1156.proj3;
+
+public class NYTimesBookCollection extends BookCollection {
+
+	@Override
+	void load() {
+	
+		
+		
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	Book find(String callNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

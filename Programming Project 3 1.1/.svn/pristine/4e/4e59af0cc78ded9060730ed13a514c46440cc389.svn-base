@@ -1,0 +1,81 @@
+package cus1156.proj3;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+/**
+ * Represents a NYTimesBookCollection 
+ * @author Sukhjinder Nahal
+ *
+ */
+public class NYTimesBookCollection extends BookCollection {
+
+	/**
+	 * Parses the JSON file and creates a NYTimeBook object and adds it to the BookCollection
+	 * @param filepath
+	 */
+	 @Override
+	 public void load(String filepath) throws IOException, ParseException {
+			NYTimesBook NYBook;
+			
+			 FileReader reader = new FileReader(filepath);
+
+			 JSONParser jsonParser = new JSONParser();
+				
+				// the JSONObject represents everything in the file
+					JSONObject JSONBookInfo= (JSONObject) jsonParser.parse(reader);
+					
+					JSONObject JSONResults = (JSONObject) JSONBookInfo.get("results");
+					JSONArray JSONLists = (JSONArray) JSONResults.get("lists");
+					
+					Iterator JSonListIter =  JSONLists.iterator();
+					while(JSonListIter.hasNext())
+					{				
+						JSONObject JSonList = (JSONObject) JSonListIter.next();
+						JSONArray JSONBooks = (JSONArray) JSonList.get("books");
+						
+						Iterator JSonBookIter = JSONBooks.iterator();
+						while(JSonBookIter.hasNext())
+						{
+							
+							NYBook=new NYTimesBook();
+							NYBook.setListName((String) JSonList.get("list_name"));
+							JSONObject JSonBook = (JSONObject) JSonBookIter.next();
+							NYBook.setAuthor((String) JSonBook.get("author"));
+							NYBook.setDescription((String) JSonBook.get("description"));
+							NYBook.setIsbn10((String) JSonBook.get("primary_isbn10"));
+							NYBook.setCallNumber((String)JSonBook.get("primary_isbn13"));
+							NYBook.setIsbn13((String) JSonBook.get("primary_isbn13"));
+							NYBook.setPublisher((String) JSonBook.get("publisher"));
+							NYBook.setBestsellerRank((long) JSonBook.get("rank"));
+							NYBook.setTitle((String) JSonBook.get("title"));
+							acquire(NYBook);
+						}
+						
+					}
+					
+										
+		}
+
+	@Override
+	public String toString() {
+		String newline = System.getProperty("line.separator");
+		StringBuffer buf = new StringBuffer();
+		buf.append("Books in the library" + newline);
+    	Collection<Book> bookVals = books.values();
+    	for (Book book : bookVals)
+    	{
+    			buf.append(book.toString());
+    	}
+    	return buf.toString();
+	}
+
+	
+
+}

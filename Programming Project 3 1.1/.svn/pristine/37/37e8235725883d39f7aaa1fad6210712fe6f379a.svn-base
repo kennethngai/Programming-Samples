@@ -1,0 +1,33 @@
+package cus1156.proj3;
+
+import java.time.LocalDate;
+
+public interface Book {
+
+	public abstract String getTitle();
+
+	public abstract void setTitle(String title);
+
+	public abstract String getCallNumber();
+
+	public abstract void setCallNumber(String callNumber);
+
+	public abstract LocalDate getDueDate();
+
+	public abstract void setDueDate(LocalDate dueDate);
+
+	/**
+	 * return true if the book is currently checked out, false otherwise
+	 * @return
+	 */
+	public abstract boolean isCheckedout();
+
+	/**
+	 * return a formatted string, suitable for display, that contains
+	 * information about the Book object
+	 */
+	public abstract String toString();
+
+	public abstract void load(String line);
+
+}
