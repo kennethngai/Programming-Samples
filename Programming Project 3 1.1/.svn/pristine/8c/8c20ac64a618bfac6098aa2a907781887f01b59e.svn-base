@@ -1,0 +1,22 @@
+package cus1156.proj3;
+
+import java.io.IOException;
+import java.time.LocalDate;
+/**
+ * this is a test class (not a Junit class, just a simple test) to make sure all of the books
+ * are read from the file and can be displayed
+ * @author Bonnie MacKellar
+ *
+ */
+public class TestBookCollection {
+	private static final String FILEPATH="C:\\Users\\mackellb\\Classes\\CUS1156TeachingMaterials\\ExampleCodeInEclipse\\Fall2014Project2\\books.txt";;
+	//private static final String FILEPATH="/home/bonnie/Dropbox/Classes/Fall2014/CUS1156/Projects/Project2/books.txt";
+	public static void main(String[] args)
+	         throws IOException
+	   { 
+		  LocalDate currentDate = LocalDate.now();
+	      CheckoutSystem system = new CheckoutSystem(currentDate);
+	      system.load(FILEPATH);
+	      system.listAllBooks();
+	   }
+}

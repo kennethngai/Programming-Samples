@@ -1,0 +1,11 @@
+package cus1156.proj3;
+
+abstract public class BookCollection {
+
+	
+	
+	abstract void load();
+	public abstract String toString();
+	abstract Book find(String callNum);
+	
+}

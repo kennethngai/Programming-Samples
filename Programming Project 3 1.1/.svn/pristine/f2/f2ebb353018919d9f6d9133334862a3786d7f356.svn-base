@@ -1,0 +1,57 @@
+package cus1156.proj3;
+
+import org.json.simple.parser.ParseException;
+import java.io.*;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+
+public class JSONParsing {
+
+	private static final String filepath = "C:\\Users\\kennethngai\\workspace\\Programming Project 3 1.1\\src\\cus1156\\proj3\\overviewlist.json";
+	private NYTimesBook book = new NYTimesBook();
+	
+	public void loading(String filepath) throws IOException, ParseException  {
+	
+		FileReader reader = new FileReader(filepath);
+		JSONParser parser = new JSONParser(); 
+		JSONObject newNYTimesBook = (JSONObject) parser.parse(reader);
+		
+		String title = (String)newNYTimesBook.get("title");
+		String author = (String)newNYTimesBook.get("author");
+		String publisher = (String)newNYTimesBook.get("publisher");
+		String publicationDate = (String)newNYTimesBook.get("published_date");
+		String description = (String)newNYTimesBook.get("description");
+		String isbn13 = (String)newNYTimesBook.get("primary_isbn13");
+		String isbn10 = (String)newNYTimesBook.get("primary_isbn10");
+		String bestsellerRank = (String)newNYTimesBook.get("rank");
+		/**
+		 * I cannot find where lastWeekRank and 
+		 * number of weeks a book was on the best seller list
+		 *  is on the JSON List.
+		 * If you can find it just replace null with what it is
+		 * named in the JSON File.
+		 */
+		String lastWeekRank = (String)newNYTimesBook.get("null");
+		String numofWeeksOnBestSellerList = (String)newNYTimesBook.get("null");
+		
+		
+		book.setTitle(title);
+		book.setAuthor(author);
+		book.setPublisher(publisher);
+		book.setPublicationDate(publicationDate);
+		book.setDescription(description);
+		book.setIsbn13(isbn13);;
+		book.setIsbn10(isbn10);
+		book.setBestsellerRank(bestsellerRank);
+		book.setLastWeekRank(lastWeekRank);
+		book.setNumOfWeeksOnBestSellerList(numofWeeksOnBestSellerList);
+		
+
+		
+		
+		
+		
+}
+
+}
